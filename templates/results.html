@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results</h1>
+        {% if results %}
+            {% for rc_name, rc_data in results.items() %}
+                <div class="rc-info">
+                    <h2>{{ rc_name }}</h2>
+                    <p>Address: {{ rc_data.info.address }}</p>
+                    <p>Postal Code: {{ rc_data.info.postal_code }}</p>
+                    <h3>Opening Hours:</h3>
+                    <ul>
+                        {% for hour in rc_data.hours %}
+                            <li>
+                                {{ hour.day }}: {{ hour.start_time }} - {{ hour.end_time }}
+                                {% if hour.start_time <= current_time <= hour.end_time %}
+                                    <span class="open-now">Open Now</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No results found for this region.</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Back to Search</a>
+    </div>
+</body>
+</html>

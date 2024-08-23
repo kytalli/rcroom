@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Dashboard</h1>
+        <div id="entry-form">
+            <h2>Add/Modify Entry</h2>
+            <form id="center-form">
+                <!-- ... existing form fields ... -->
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div id="excel-upload">
+            <h2>Upload Excel Sheet</h2>
+            <form id="excel-form" enctype="multipart/form-data">
+                <input type="file" name="excel_file" accept=".xlsx, .xls" required>
+                <input type="text" name="table_name" placeholder="New table name" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div id="entries-list">
+            <h2>Current Entries</h2>
+            <ul id="entries"></ul>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

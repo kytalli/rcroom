@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Timetable for {{ region }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>RC Timetable for {{ region }}</h1>
+        <div class="day-buttons">
+            {% for day in days %}
+            <button onclick="loadTimetable('{{ day }}')">{{ day }}</button>
+            {% endfor %}
+        </div>
+        <h2 id="dayTitle">Monday</h2>
+        <div class="timetable-container">
+            <canvas id="timetableChart"></canvas>
+        </div>
+        <div id="listings"></div>
+    </div>
+    <script>
+        var selectedRegion = "{{ region }}";
+    </script>
+    <script src="{{ url_for('static', filename='timetable.js') }}"></script>
+</body>
+</html>
